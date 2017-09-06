@@ -3,6 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { Auth, User } from '@ionic/cloud-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -15,7 +16,7 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public formBuilder: FormBuilder,
-    public auth: Auth, 
+    public auth: Auth,
     public user: User
   ) {
     this.myForm = this.formBuilder.group({
@@ -28,7 +29,7 @@ export class LoginPage {
 
     console.log("Email:" + this.myForm.value.email);
     console.log("Password:" + this.myForm.value.password);
-   
+
     let details = {
       'email': this.myForm.value.email,
       'password': this.myForm.value.password
@@ -36,7 +37,7 @@ export class LoginPage {
 
     this.auth.login('basic', details).then(() => {
       console.log("User logging");
-      this.navCtrl.setRoot('HomePage');
+      this.navCtrl.setRoot('TabsPage');
     }, (err) => {
 
         console.log(err.message);
@@ -46,7 +47,7 @@ export class LoginPage {
         if(err.message === 'UNAUTHORIZED') errors += 'Password is required.<br/>';
       }
     );
-  
+
 
   }
 

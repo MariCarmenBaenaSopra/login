@@ -4,12 +4,7 @@ import { Auth, User } from '@ionic/cloud-angular';
 import { LoginPage } from '../../pages/login/login';
 import { FeedProvider, Feed } from '../../providers/feed/feed';
 
-/**
- * Generated class for the HomePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -17,7 +12,7 @@ import { FeedProvider, Feed } from '../../providers/feed/feed';
 })
 export class HomePage {
   @ViewChild(Nav) nav: Nav;
- 
+
   rootPage = 'FeedListPage';
   feeds: Feed[];
 
@@ -65,18 +60,18 @@ export class HomePage {
     });
     prompt.present();
   }
- 
+
   private loadFeeds() {
     this.feedProvider.getSavedFeeds().then(
       allFeeds => {
         this.feeds = allFeeds;
       });
   }
- 
+
   public openFeed(feed: Feed) {
     this.nav.setRoot('FeedListPage', { 'selectedFeed': feed });
   }
- 
+
   public ionViewWillEnter() {
     this.loadFeeds();
   }
